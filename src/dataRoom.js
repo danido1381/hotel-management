@@ -5,6 +5,7 @@ const data = [
     price: 1000,
     description: "SINGLE BED ROOM",
     size: "MEDIUM",
+    likes: 84,
   },
   {
     img:
@@ -12,6 +13,7 @@ const data = [
     price: 1400,
     description: "COUPLE BED ROOM",
     size: "LARGE",
+    likes: 99,
   },
   {
     img:
@@ -19,6 +21,7 @@ const data = [
     price: 1500,
     description: "DOUBLE BED ROOM",
     size: "MEDIUM",
+    likes: 89,
   },
 
   {
@@ -27,6 +30,7 @@ const data = [
     price: 1800,
     description: "DELUXE",
     size: "KING SIZE",
+    likes: 60,
   },
 
   {
@@ -35,6 +39,114 @@ const data = [
     price: 2000,
     description: "FAMILY",
     size: "MEDIUM",
+    likes: 100,
+  },
+
+  {
+    img:
+      "https://images.pexels.com/photos/262048/pexels-photo-262048.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    price: 1500,
+    description: "UPHOLSTERED BED NEAR CABINET",
+    size: "LARGE",
+    likes: 84,
+  },
+
+  {
+    img:
+      "https://images.pexels.com/photos/2029722/pexels-photo-2029722.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    price: 1200,
+    description: "TWO BEDS IN WELL-LIT ROOM",
+    size: "SMALL",
+    likes: 60,
+  },
+
+  {
+    img:
+      "https://images.pexels.com/photos/279746/pexels-photo-279746.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    price: 1100,
+    description: "SINGLE BED ROOM IN WELL-LIT ROOM",
+    size: "MEDIUM",
+    likes: 90,
+  },
+
+  {
+    img:
+      "https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+    price: 1400,
+    description: "LARGE SINGLE BED ROOM",
+    size: "LARGE",
+    likes: 100,
+  },
+
+  {
+    img:
+      "https://images.pexels.com/photos/5644284/pexels-photo-5644284.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+    price: 900,
+    description: "NORMAL ROOM WITH BED",
+    size: "MEDIUM",
+    likes: 34,
+  },
+
+  {
+    img:
+      "https://images.pexels.com/photos/276671/pexels-photo-276671.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+    price: 1750,
+    description: "OPEN ROOM WITH KING SIZE BED",
+    size: "LARGE",
+    likes: 200,
+  },
+
+  {
+    img:
+      "https://images.pexels.com/photos/3144580/pexels-photo-3144580.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+    price: 2000,
+    description: "COSY MODERN BEDROOM",
+    size: "LARGE",
+    likes: 500,
+  },
+
+  {
+    img:
+      "https://cdn.pixabay.com/photo/2017/01/14/12/48/hotel-1979406_1280.jpg",
+    price: 1500,
+    description: "KING SIZE MODERN BEDROOM",
+    size: "LARGE",
+    likes: 450,
+  },
+
+  {
+    img:
+      "https://cdn.pixabay.com/photo/2014/05/21/14/56/bedroom-349698_1280.jpg",
+    price: 2100,
+    description: "REFINED BEDROOM",
+    size: "LARGE",
+    likes: 986,
+  },
+
+  {
+    img: "https://cdn.pixabay.com/photo/2015/01/16/08/54/motel-601218_1280.jpg",
+    price: 5000,
+    description: "MODERN DELUXE BEDROOM",
+    size: "LARGE",
+    likes: 1090,
+  },
+
+  {
+    img:
+      "https://cdn.pixabay.com/photo/2020/10/18/09/16/bedroom-5664221_1280.jpg",
+    price: 1000,
+    description: "SINGLE BED ROOM",
+    size: "MEDIUM",
+    likes: 100,
+  },
+
+  {
+    img:
+      "https://cdn.pixabay.com/photo/2019/06/02/12/27/apartment-4246371_1280.jpg",
+    price: 1300,
+    description: "SINGLE BED ROOM",
+    size: "SMALL",
+    likes: 120,
   },
 ];
 export { data };

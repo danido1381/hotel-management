@@ -34,7 +34,17 @@ export default class LandingPage extends Component {
   };
   render() {
     return (
-      <div>
+      <div
+        style={{
+          backgroundImage:
+            "url(https://images.pexels.com/photos/97083/pexels-photo-97083.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500)",
+          backgroundSize: "100% 100%",
+          backgroundRepeat: "no repeat",
+          backgroundPosition: "center",
+          height: "100vh",
+          width: "100vw",
+        }}
+      >
         <Grid container style={{ padding: "20px" }}>
           <Grid item xs={12} style={{ textAlign: "right" }}>
             <Button
@@ -56,7 +66,7 @@ export default class LandingPage extends Component {
         </Grid>
         <Grid container>
           <Grid item xs={12}>
-            <SliderJs />
+            {<SliderJs />}
           </Grid>
         </Grid>
         <Modal

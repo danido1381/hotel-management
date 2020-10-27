@@ -23,52 +23,22 @@ const slideImages = [
 export default class SliderJs extends Component {
   render() {
     return (
-      <div>
+      <div style={{ paddingTop: "200px" }}>
         <Carousel>
-          <div>
-            <h3
-              style={{
-                ...contentStyle,
-
-                background:
-                  "url(https://cdn.business2community.com/wp-content/uploads/2018/04/payment.jpg)",
-              }}
-            >
-              1
+          <div style={{ textAlign: "center" }}>
+            <h3 style={{ textAlign: "center", fontSize: "50px" }}>
+              <b>HOTEL MANAGEMENT SYSTEM</b>
             </h3>
           </div>
-          <div>
-            <h3
-              style={{
-                ...contentStyle,
-                background:
-                  "url(https://pix10.agoda.net/hotelImages/1602831/-1/a7cebc44aad5ccac2d04208fc9e34237.jpg?s=1024x768)",
-              }}
-            >
-              2
+          <div style={{ textAlign: "center" }}>
+            <h3 style={{ textAlign: "center", fontSize: "30px" }}>
+              BY GROUP 14
             </h3>
           </div>
-          <div>
-            <h3
-              style={{
-                ...contentStyle,
-
-                background:
-                  "url(https://c1.sfdcstatic.com/content/dam/blogs/ca/Blog%20Posts/Every-Task-a-Customer-Service-Rep-Must-Do-opengraph.png)",
-              }}
-            >
-              3
-            </h3>
-          </div>
-          <div>
-            <h3
-              style={{
-                ...contentStyle,
-                background:
-                  "url(https://media-cdn.tripadvisor.com/media/photo-s/0a/e3/bc/4c/very-nice-hotel-and-salted.jpg)",
-              }}
-            >
-              4
+          <div style={{ textAlign: "center" }}>
+            <h3 style={{ textAlign: "center", fontSize: "30px" }}>
+              "When you are on a great mission, look simple; think and act
+              complexly"
             </h3>
           </div>
         </Carousel>

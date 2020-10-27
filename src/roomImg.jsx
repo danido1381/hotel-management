@@ -27,8 +27,9 @@ export default class RoomList extends Component {
             <Card.Content extra>
               <a>
                 <Icon name="like" />
-                22 Likes
+                Likes {info.likes}
               </a>
+              <p>Size {info.size}</p>
             </Card.Content>
           </Card>
         ))}
