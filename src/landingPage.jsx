@@ -1,11 +1,15 @@
 import { Grid, Button } from "@material-ui/core";
 import { Modal } from "antd";
+import Axios from "axios";
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { Link, Redirect } from "react-router-dom";
+import { toast } from "react-toastify";
 import { Form, Button as Btn } from "semantic-ui-react";
 import SliderJs from "./sliderJs";
+toast.configure();
 
-export default class LandingPage extends Component {
+class LandingPage extends Component {
   state = {
     firstname: "",
     lastname: "",
@@ -19,12 +23,36 @@ export default class LandingPage extends Component {
 
   login = async () => {
     try {
+      let resp = await Axios.post("http://localhost:5000/login", {
+        email: this.state.email,
+        password: this.state.password,
+      });
+      console.log(resp);
+      if (resp.data.exist) {
+        if (resp.data.invalid) {
+          toast.warning("Invalid email or password", { autoClose: 1000 });
+        } else {
+          this.props.login(resp.data);
+          toast.success("User logged succesfully", { autoClose: 1500 });
+          this.setState({ loginVisible: false });
+        }
+      } else {
+        toast.error("Account doesn't exist", { autoClose: 1000 });
+      }
     } catch (err) {
       console.log(err);
     }
   };
   signup = async () => {
     try {
+      let resp = await Axios.post("http://localhost:5000/signup", this.state);
+      if (resp.data.exist) {
+        toast.error("User account doesn't exist", { autoClose: 1000 });
+        this.setState({ signupVisible: false });
+      } else {
+        toast("User logged", { autoClose: 2000 });
+        this.setState({ signupVisible: false });
+      }
     } catch (err) {
       console.log(err);
     }
@@ -33,6 +61,9 @@ export default class LandingPage extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
   render() {
+    if (this.props.logged) {
+      return <Redirect to="/main/page" />;
+    }
     return (
       <div
         style={{
@@ -90,7 +121,7 @@ export default class LandingPage extends Component {
               onChange={this.takeInput}
               type="password"
             />
-            <Btn>Login</Btn>
+            <Btn onClick={this.login}>Login</Btn>
           </Form>
         </Modal>
         <Modal
@@ -126,10 +157,27 @@ export default class LandingPage extends Component {
               onChange={this.takeInput}
               type="password"
             />
-            <Btn>Signup</Btn>
+            <Btn onClick={this.signup}>Signup</Btn>
           </Form>
         </Modal>
       </div>
     );
   }
 }
+
+const loginUser = (data) => ({ type: "LOGIN", data });
+
+const mapStateToProps = (state) => {
+  return {
+    logged: state.info.logged,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    login: (data) => dispatch(loginUser(data)),
+  };
+};
+
+LandingPage = connect(mapStateToProps, mapDispatchToProps)(LandingPage);
+export default LandingPage;
