@@ -4,8 +4,17 @@ import AirportShuttleIcon from "@material-ui/icons/AirportShuttle";
 import { Button, Form, Input, Menu } from "semantic-ui-react";
 import Room from "./room";
 import RoomList from "./roomImg";
+import { connect } from "react-redux";
+import { Redirect } from "react-router";
+import Axios from "axios";
+import CheckingList from "./checkingList";
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import RoomIcon from '@material-ui/icons/Room';
+import PlaylistAddCheckIcon from '@material-ui/icons/PlaylistAddCheck';
+import Checkout from "./checkout";
 
-export default class MainPage extends Component {
+
+class MainPage extends Component {
   state = {
     activeItem: "home",
     visibleCheckin: false,
@@ -40,7 +49,31 @@ export default class MainPage extends Component {
       visibleRooms: true,
     });
   };
+  clickedCheckinglist = ()=>{
+    this.setState({
+      visibleCheckin: false,
+      visibleCheckout: false,
+      visibleList: true,
+      visibleRooms: false,
+    })
+  }
+
+  getBookings = async()=>{
+    try{
+      let data = await Axios.get("http://localhost:5000/booking")
+      console.log(data)
+      this.props.getBooks(data.data)
+    }catch(err){
+      console.log(err)
+    }
+  }
+  componentDidMount(){
+    this.getBookings()
+  }
   render() {
+    if(!this.props.logged){
+      return <Redirect to="/"/>
+    }
     return (
       <div>
         <Menu secondary>
@@ -49,38 +82,22 @@ export default class MainPage extends Component {
             active={this.state.activeItem === "home"}
             onClick={this.handleItemClick}
           />
-          <Menu.Item
+          {/* <Menu.Item
             name="jobs"
             active={this.state.activeItem === "jobs"}
             onClick={this.handleItemClick}
-          />
+          /> */}
 
           <Menu.Menu position="right">
-            <Menu.Item>
+            {/* <Menu.Item>
               <Input icon="search" placeholder="Search..." />
-            </Menu.Item>
+            </Menu.Item> */}
 
-            {this.props.logged ? (
-              <Button color="red" icon="arrow right">
+            
+              <Button color="red" icon="arrow right" onClick={()=>this.props.logout()}>
                 Logout
               </Button>
-            ) : (
-              <>
-                <Button
-                  color="green"
-                  onClick={() => this.setState({ loginVisible: true })}
-                >
-                  Login
-                </Button>
-
-                <Button
-                  color="blue"
-                  onClick={() => this.setState({ signupVisible: true })}
-                >
-                  Signup
-                </Button>
-              </>
-            )}
+      
           </Menu.Menu>
         </Menu>
         <Grid container>
@@ -101,13 +118,13 @@ export default class MainPage extends Component {
               onClick={this.clickedCheckOut}
             >
               <ListItemIcon>
-                <AirportShuttleIcon />
+                <ExitToAppIcon />
               </ListItemIcon>
               <ListItemText primary="Check Out" />
             </ListItem>
-            <ListItem button style={{ border: "1px solid black" }}>
+            <ListItem button style={{ border: "1px solid black" }} onClick={this.clickedCheckinglist}>
               <ListItemIcon>
-                <AirportShuttleIcon />
+                <PlaylistAddCheckIcon/>
               </ListItemIcon>
               <ListItemText primary="Check In List" />
             </ListItem>
@@ -117,7 +134,7 @@ export default class MainPage extends Component {
               onClick={this.clickedRooms}
             >
               <ListItemIcon>
-                <AirportShuttleIcon />
+                <RoomIcon />
               </ListItemIcon>
               <ListItemText primary="Rooms" />
             </ListItem>
@@ -127,12 +144,28 @@ export default class MainPage extends Component {
               <Room />
             ) : this.state.visibleRooms ? (
               <RoomList />
-            ) : (
-              ""
-            )}
+            ) : this.state.visibleList?<CheckingList />:this.state.visibleCheckout?<Checkout/>:""}
           </Grid>
         </Grid>
       </div>
     );
   }
 }
+
+const LogoutUser =()=>({type:"LOGOUT"})
+
+const mapStateToProps = state =>{
+  return{
+    logged: state.info.logged
+  }
+}
+
+const getAllBookings = data=>({type:"BOOKINGS",data})
+const mapDispatchToProps = dispatch =>{
+  return{
+    logout: ()=>dispatch(LogoutUser()),
+    getBooks: (data)=>dispatch(getAllBookings(data))
+  }
+}
+MainPage = connect(mapStateToProps,mapDispatchToProps)(MainPage)
+export default MainPage

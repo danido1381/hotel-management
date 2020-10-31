@@ -1,8 +1,19 @@
+import { Button } from "@material-ui/core";
+import Axios from "axios";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Table } from "semantic-ui-react";
 
-class CheckingList extends Component {
+class CheckoutList extends Component {
+    checkOut = async(id)=>{
+        try{
+            let data = await Axios.delete("http://localhost:5000/booking/"+id)
+            console.log(data)
+            this.props.getBooks(data.data)
+        }catch(err){
+            console.log(err)
+        }
+    }
   render() {
     return <div style={{padding:"50px"}}>
       <Table celled>
@@ -14,7 +25,7 @@ class CheckingList extends Component {
             <Table.HeaderCell>email</Table.HeaderCell>
             <Table.HeaderCell>Telephone</Table.HeaderCell>
             <Table.HeaderCell>Price</Table.HeaderCell>
-            <Table.HeaderCell>RoomType</Table.HeaderCell>
+            <Table.HeaderCell>Action</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
         <Table.Body>
@@ -25,18 +36,25 @@ class CheckingList extends Component {
               <Table.Cell>{info.email}</Table.Cell>
               <Table.Cell>{info.telephone}</Table.Cell>
               <Table.Cell>{info.price}</Table.Cell>
-              <Table.Cell>{info.roomType}</Table.Cell>
+              <Table.Cell><Button variant="contained" color="primary" onClick={()=>this.checkOut(info.id)}>Checkout</Button></Table.Cell>
           </Table.Row>)}
         </Table.Body>
       </Table>
     </div>;
   }
 }
+const bookingUser =(data)=>({type:"BOOKINGS",data})
 
 const mapStateToProps = state =>{
   return {
     bookings: state.bookings
   }
 }
-CheckingList = connect(mapStateToProps,null)(CheckingList)
-export default CheckingList;
+
+const mapDispatchtoProps = dispatch =>{
+    return {
+      getBooks:(data)=>dispatch(bookingUser(data))
+    }
+  }
+CheckoutList = connect(mapStateToProps,mapDispatchtoProps)(CheckoutList)
+export default CheckoutList;

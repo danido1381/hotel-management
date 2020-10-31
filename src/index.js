@@ -8,6 +8,7 @@ import "antd/dist/antd.css";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
 import rootReducer from "./reducers/rootReducer";
+import 'react-toastify/dist/ReactToastify.css';
 
 function saveToLocalStorage(state) {
   try {

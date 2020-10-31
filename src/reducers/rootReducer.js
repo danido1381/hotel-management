@@ -25,6 +25,10 @@ const reducer = (state = initState, action) => {
       ...state,
       bookings: action.data,
     };
+  }else if(action.type==="LOGOUT"){
+    return {
+      ...initState
+    }
   }
   return state;
 };

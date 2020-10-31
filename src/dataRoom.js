@@ -148,5 +148,50 @@ const data = [
     size: "SMALL",
     likes: 120,
   },
+
+  {
+    img:
+      "https://image.freepik.com/free-photo/spacious-hall-with-big-couch_1203-1483.jpg",
+    price: 2500,
+    description: "SPACIOUS BEDROOM WITH HALL",
+    size: "LARGE",
+    likes: 890,
+  },
+
+  {
+    img:
+      "https://image.freepik.com/free-photo/elegant-hotel-room-with-big-bed_1203-1494.jpg",
+    price: 2000,
+    description: "MODERN ROOM WITH BIG BED",
+    size: "LARGE",
+    likes: 300,
+  },
+
+  {
+    img:
+      "https://img.freepik.com/free-photo/small-hotel-room-interior-with-double-bed-bathroom_1262-12489.jpg?size=626&ext=jpg&ga=GA1.2.349914424.1603834573",
+    price: 1000,
+    description: "SMALL ROOM WITH DOUBLE BED",
+    size: "LARGE",
+    likes: 250,
+  },
+
+  {
+    img:
+      "https://img.freepik.com/free-photo/pillow-bed-decoration-interior-bedroom_74190-11180.jpg?size=626&ext=jpg&ga=GA1.2.349914424.1603834573",
+    price: 900,
+    description: "SINGLE BEDROOM",
+    size: "LARGE",
+    likes: 250,
+  },
+
+  {
+    img:
+      "https://img.freepik.com/free-photo/spacious-room-with-wooden-table_1203-1489.jpg?size=626&ext=jpg&ga=GA1.2.349914424.1603834573",
+    price: 1700,
+    description: "SPACIOUS DOUBLE BEDROOM",
+    size: "LARGE",
+    likes: 500,
+  },
 ];
 export { data };
